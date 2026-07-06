@@ -41,7 +41,6 @@
     position: relative;
   }
 
-  /* بافت ظریف شبیه پارچمنت/بوم کهنه روی پس‌زمینه تیره */
   body::before {
     content: "";
     position: absolute;
@@ -118,6 +117,54 @@
     margin-bottom: clamp(20px, 4vh, 40px);
   }
 
+  /* ظرف کلی: ردیف بالا (دانشنامه) + ردیف پایین (ایلیاد/ادیسه) */
+  .main-grid {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 2.4vh, 22px);
+    width: 100%;
+    align-items: center;
+  }
+
+  /* کارت دانشنامه - عرض کامل ردیف پایین، ارتفاع کمتر */
+  .encyclopedia-card {
+    width: 100%;
+    max-width: 660px;
+    background: rgba(244, 235, 217, 0.05);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: clamp(14px, 2vh, 20px) clamp(20px, 3vw, 30px);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    transition: border-color 0.25s, background 0.25s, transform 0.25s;
+  }
+
+  .encyclopedia-card:hover {
+    border-color: var(--gold);
+    background: rgba(244, 235, 217, 0.09);
+    transform: translateY(-3px);
+  }
+
+  .encyclopedia-title {
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    color: var(--gold-bright);
+    margin: 0;
+  }
+
+  .encyclopedia-desc {
+    font-family: 'Vazirmatn', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.72rem, 1.3vw, 0.85rem);
+    color: var(--parchment-dim);
+    margin: 2px 0 0;
+  }
+
+  /* ردیف پایین: دو مربع ایلیاد/ادیسه */
   .columns {
     display: flex;
     gap: clamp(16px, 3vw, 40px);
@@ -125,6 +172,7 @@
     align-items: stretch;
     flex-wrap: wrap;
     width: 100%;
+    max-width: 660px;
   }
 
   .work-column {
@@ -132,9 +180,12 @@
     border: 1px solid var(--line);
     border-radius: 10px;
     padding: clamp(16px, 2.4vh, 26px) clamp(18px, 2.6vw, 30px);
-    min-width: 250px;
-    max-width: 320px;
     flex: 1 1 260px;
+    max-width: 310px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     transition: border-color 0.25s, background 0.25s, transform 0.25s;
   }
 
@@ -169,12 +220,12 @@
     text-decoration: none;
     color: var(--parchment);
     font-family: 'Vazirmatn', sans-serif;
-    font-size: clamp(0.88rem, 1.5vw, 0.98rem);
+    font-size: clamp(0.82rem, 1.4vw, 0.95rem);
     font-weight: 400;
-    padding: 9px 12px;
+    padding: 8px 10px;
     border-radius: 6px;
     background: rgba(197, 168, 128, 0.07);
-    transition: background 0.2s, color 0.2s, padding-right 0.2s;
+    transition: background 0.2s, color 0.2s;
     text-align: center;
   }
 
@@ -190,7 +241,7 @@
     font-family: 'Amiri', serif;
     font-size: 0.85rem;
     text-align: center;
-    padding: 9px 12px;
+    padding: 8px 10px;
     opacity: 0.6;
   }
 
@@ -208,6 +259,7 @@
     html, body { overflow-y: auto; }
     body { height: auto; min-height: 100vh; display: block; padding: 20px 0; }
     .frame { height: auto; min-height: unset; margin: 0 auto; }
+    .work-column { aspect-ratio: unset; }
   }
 </style>
 </head>
@@ -219,20 +271,30 @@
   <p class="subtitle">HomerFa — واژه‌نامه‌ها، خلاصه‌ها، و یادداشت‌های حماسه‌های یونان باستان</p>
   <div class="divider"></div>
 
-  <div class="columns">
-    <div class="work-column">
-      <h2 class="work-title">ایلیاد</h2>
-      <ul class="work-links">
-        <li><a href="iliad-summary.html">خلاصه‌ی داستان</a></li>
-        <li><a href="iliad-glossary.html">واژه‌نامه‌ی اسامی و مکان‌ها</a></li>
-      </ul>
-    </div>
+  <div class="main-grid">
 
-    <div class="work-column">
-      <h2 class="work-title">ادیسه</h2>
-      <ul class="work-links">
-        <li class="empty">به‌زودی</li>
-      </ul>
+    <a class="encyclopedia-card" href="encyclopedia.html">
+      <div>
+        <p class="encyclopedia-title">دانشنامه</p>
+        <p class="encyclopedia-desc">مقالاتی درباره‌ی خدایان، خاندان‌ها، و صنایع ادبی ایلیاد</p>
+      </div>
+    </a>
+
+    <div class="columns">
+      <div class="work-column">
+        <h2 class="work-title">ایلیاد</h2>
+        <ul class="work-links">
+          <li><a href="iliad-summary.html">خلاصه‌ی داستان</a></li>
+          <li><a href="iliad-glossary.html">واژه‌نامه‌ی اسامی و مکان‌ها</a></li>
+        </ul>
+      </div>
+
+      <div class="work-column">
+        <h2 class="work-title">ادیسه</h2>
+        <ul class="work-links">
+          <li class="empty">به‌زودی</li>
+        </ul>
+      </div>
     </div>
 
   </div>
@@ -242,5 +304,3 @@
 
 </body>
 </html>
-
-<!-- update -->
