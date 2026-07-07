@@ -37,6 +37,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    height: 100dvh;
     width: 100vw;
     position: relative;
   }
@@ -54,10 +55,10 @@
 
   .frame {
     width: min(94vw, 980px);
-    height: min(92vh, 780px);
+    height: min(94vh, 94dvh, 800px);
     border: 1px solid var(--line);
     border-radius: 14px;
-    padding: clamp(18px, 3vh, 40px) clamp(18px, 4vw, 56px);
+    padding: clamp(14px, 2.4vh, 34px) clamp(18px, 4vw, 56px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,76 +83,86 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  .header {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: clamp(14px, 2.6vh, 28px);
+  }
+
   .eyebrow {
     font-family: 'Amiri', serif;
     font-style: italic;
-    font-size: clamp(0.75rem, 1.4vw, 0.95rem);
+    font-size: clamp(0.7rem, 1.3vw, 0.9rem);
     letter-spacing: 0.12em;
     color: var(--parchment-dim);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   h1.title {
     font-family: 'Vazirmatn', sans-serif;
     font-weight: 900;
-    font-size: clamp(2.4rem, 6.2vw, 4.4rem);
+    font-size: clamp(2.1rem, 5.4vw, 3.8rem);
     color: var(--gold-bright);
     margin: 0 0 4px;
-    line-height: 1.15;
+    line-height: 1.1;
     text-shadow: 0 2px 24px rgba(197,168,128,0.25);
   }
 
   .subtitle {
     font-family: 'Vazirmatn', sans-serif;
     font-weight: 300;
-    font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+    font-size: clamp(0.78rem, 1.4vw, 0.98rem);
     color: var(--parchment-dim);
-    margin: 0 0 clamp(20px, 4vh, 40px);
+    margin: 0 0 clamp(14px, 2.6vh, 26px);
     letter-spacing: 0.02em;
+    text-align: center;
   }
 
   .divider {
-    width: 120px;
+    width: 100px;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin-bottom: clamp(20px, 4vh, 40px);
   }
 
-  /* ظرف کلی: ردیف بالا (دانشنامه) + ردیف پایین (ایلیاد/ادیسه) */
+  /* بدنه‌ی اصلی: باید دقیقاً فضای باقی‌مانده را پر کند، بدون اسکرول */
   .main-grid {
+    flex: 1 1 auto;
+    min-height: 0;
     display: flex;
     flex-direction: column;
-    gap: clamp(14px, 2.4vh, 22px);
+    gap: clamp(10px, 1.8vh, 18px);
     width: 100%;
-    align-items: center;
+    max-width: 640px;
   }
 
-  /* کارت دانشنامه - عرض کامل ردیف پایین، ارتفاع کمتر */
+  /* کارت دانشنامه: نواری افقی، سهم کوچک‌تر از ارتفاع */
   .encyclopedia-card {
+    flex: 0 0 auto;
     width: 100%;
-    max-width: 660px;
     background: rgba(244, 235, 217, 0.05);
     border: 1px solid var(--line);
     border-radius: 10px;
-    padding: clamp(14px, 2vh, 20px) clamp(20px, 3vw, 30px);
+    padding: clamp(12px, 1.8vh, 18px) clamp(18px, 3vw, 28px);
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
+    gap: 6px;
     transition: border-color 0.25s, background 0.25s, transform 0.25s;
   }
 
   .encyclopedia-card:hover {
     border-color: var(--gold);
     background: rgba(244, 235, 217, 0.09);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
   }
 
   .encyclopedia-title {
     font-family: 'Amiri', serif;
     font-weight: 700;
-    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
     color: var(--gold-bright);
     margin: 0;
   }
@@ -159,74 +170,77 @@
   .encyclopedia-desc {
     font-family: 'Vazirmatn', sans-serif;
     font-weight: 300;
-    font-size: clamp(0.72rem, 1.3vw, 0.85rem);
+    font-size: clamp(0.68rem, 1.2vw, 0.8rem);
     color: var(--parchment-dim);
     margin: 2px 0 0;
   }
 
-  /* ردیف پایین: دو مربع ایلیاد/ادیسه */
+  /* ردیف پایین: دو ستون هم‌قد و هم‌اندازه، تقارن کامل */
   .columns {
+    flex: 1 1 auto;
+    min-height: 0;
     display: flex;
-    gap: clamp(16px, 3vw, 40px);
-    justify-content: center;
-    align-items: stretch;
-    flex-wrap: wrap;
+    gap: clamp(12px, 2.4vw, 24px);
     width: 100%;
-    max-width: 660px;
   }
 
   .work-column {
+    flex: 1 1 50%;
+    min-width: 0;
     background: rgba(244, 235, 217, 0.03);
     border: 1px solid var(--line);
     border-radius: 10px;
-    padding: clamp(16px, 2.4vh, 26px) clamp(18px, 2.6vw, 30px);
-    flex: 1 1 260px;
-    max-width: 310px;
-    aspect-ratio: 1 / 1;
+    padding: clamp(14px, 2vh, 22px) clamp(14px, 2vw, 22px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     transition: border-color 0.25s, background 0.25s, transform 0.25s;
   }
 
   .work-column:hover {
     border-color: var(--gold);
     background: rgba(244, 235, 217, 0.06);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
   }
 
   .work-title {
+    flex: 0 0 auto;
     font-family: 'Amiri', serif;
     font-weight: 700;
-    font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
     color: var(--gold-bright);
-    margin: 0 0 14px;
+    margin: 0 0 10px;
     text-align: center;
     padding-bottom: 10px;
     border-bottom: 1px solid var(--line);
   }
 
   .work-links {
+    flex: 1 1 auto;
+    min-height: 0;
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 8px;
   }
 
   .work-links a {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     text-decoration: none;
     color: var(--parchment);
     font-family: 'Vazirmatn', sans-serif;
-    font-size: clamp(0.82rem, 1.4vw, 0.95rem);
+    font-size: clamp(0.78rem, 1.3vw, 0.92rem);
     font-weight: 400;
-    padding: 8px 10px;
+    padding: clamp(8px, 1.4vh, 12px) 10px;
     border-radius: 6px;
     background: rgba(197, 168, 128, 0.07);
     transition: background 0.2s, color 0.2s;
-    text-align: center;
+    flex: 1 1 auto;
   }
 
   .work-links a:hover {
@@ -236,40 +250,43 @@
   }
 
   .work-links .empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--parchment-dim);
     font-style: italic;
     font-family: 'Amiri', serif;
-    font-size: 0.85rem;
+    font-size: clamp(0.82rem, 1.4vw, 0.95rem);
     text-align: center;
-    padding: 8px 10px;
-    opacity: 0.6;
+    padding: 10px;
+    opacity: 0.55;
+    flex: 1 1 auto;
+    border: 1px dashed var(--line);
+    border-radius: 6px;
   }
 
   footer {
-    margin-top: clamp(18px, 3vh, 32px);
-    font-size: 0.72rem;
+    flex: 0 0 auto;
+    margin-top: clamp(10px, 2vh, 20px);
+    font-size: 0.68rem;
     color: var(--parchment-dim);
     opacity: 0.7;
     text-align: center;
     font-family: 'Vazirmatn', sans-serif;
     font-weight: 300;
   }
-
-  @media (max-height: 620px), (max-width: 420px) {
-    html, body { overflow-y: auto; }
-    body { height: auto; min-height: 100vh; display: block; padding: 20px 0; }
-    .frame { height: auto; min-height: unset; margin: 0 auto; }
-    .work-column { aspect-ratio: unset; }
-  }
 </style>
 </head>
 <body>
 
 <div class="frame">
-  <div class="eyebrow">مرجعِ فارسیِ</div>
-  <h1 class="title">هومر</h1>
-  <p class="subtitle">HomerFa — واژه‌نامه‌ها، خلاصه‌ها، و یادداشت‌های حماسه‌های یونان باستان</p>
-  <div class="divider"></div>
+
+  <div class="header">
+    <div class="eyebrow">مرجعِ فارسیِ</div>
+    <h1 class="title">هومر</h1>
+    <p class="subtitle">HomerFa — واژه‌نامه‌ها، خلاصه‌ها، و یادداشت‌های حماسه‌های یونان باستان</p>
+    <div class="divider"></div>
+  </div>
 
   <div class="main-grid">
 
